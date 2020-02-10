@@ -6,6 +6,12 @@ var bodyParser = require('body-parser')
 var app = express()
 
 app.use(helmet())
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
+    }
+  }))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
